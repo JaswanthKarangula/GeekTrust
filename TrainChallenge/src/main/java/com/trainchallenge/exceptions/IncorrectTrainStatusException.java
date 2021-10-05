@@ -1,7 +1,6 @@
 package com.trainchallenge.exceptions;
 
-
-public class NoSuchCommandException extends Exception{
+public class IncorrectTrainStatusException extends Exception {
     /**
      *
      */
@@ -9,6 +8,6 @@ public class NoSuchCommandException extends Exception{
 
     @Override
     public String toString() {
-        return "No such Command Found!";
+        return "Incorrect train Status";
     }
 }

@@ -2,18 +2,25 @@ package com.trainchallenge.command;
 
 import java.util.List;
 
-import com.trainchallenge.entities.Train;
+import com.trainchallenge.exceptions.NoSuchTrainFoundException;
+import com.trainchallenge.exceptions.StationMissmatchException;
 import com.trainchallenge.services.ITrainService;
 
 public class CombineTrainsCommand implements ICommand {
 
-    ITrainService trainService;
+    private final ITrainService trainService;
+
+    public CombineTrainsCommand(ITrainService trainService) {
+        this.trainService = trainService;
+    }
     @Override
     public void execute(List<String> tokens) {
-        // TODO Auto-generated method stub
-        // Train firstTrain=trainService.getTrain(tokens.get(0));
-        // Train secondTrain=trainService.getTrain(tokens.get(1));
+        try{
         trainService.combineTrains(tokens.get(0), tokens.get(1));
+        }
+        catch(NoSuchTrainFoundException | StationMissmatchException e ){
+            e.printStackTrace();
+        }
 
     }
     

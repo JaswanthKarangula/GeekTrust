@@ -14,8 +14,12 @@ public class SplitTrainsCommand implements ICommand {
 
     @Override
     public void execute(List<String> tokens) {
-        // TODO Auto-generated method stub
+        try{
         trainService.splitTrain(tokens.get(0));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
 
     }
     

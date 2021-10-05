@@ -4,24 +4,17 @@ import java.util.Objects;
 
 public class Station {
     
-    private final Integer id;
     private final String  stationName;
     private Double  lattitude;
     private Double longitude;
+    private final Double stationDistance;
     private final String stationCode;
 
-    public Station(Integer id,String stationName,String stationCode) {
+    public Station(String stationName,String stationCode,Double stationDistance) {
         this.stationName = stationName;
         this.stationCode = stationCode;
-        this.id=id;
-    }
-
-    public Station(Integer id,String stationName, Double lattitude, Double longitude, String stationCode) {
-        this.stationName = stationName;
-        this.lattitude = lattitude;
-        this.longitude = longitude;
-        this.stationCode = stationCode;
-        this.id=id;
+        this.stationDistance=stationDistance;
+        
     }
 
     public String getStationName() {
@@ -32,10 +25,10 @@ public class Station {
     public Double getLattitude() {
         return this.lattitude;
     }
-    public Integer getId(){
-        return this.id;
+   
+    public Double getStationDistanc(){
+        return stationDistance;
     }
-
     public void setLattitude(Double lattitude) {
         this.lattitude = lattitude;
     }

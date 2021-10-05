@@ -1,6 +1,6 @@
 package com.trainchallenge.entities;
 
-
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +12,8 @@ public class Train {
     private TrainStatus trainStatus;
     private String firstTrain;
     private String secondTrain;
+ 
+    private int stationIndex=0;
 
     public Train(String trainName, Integer id, TrainPath trainPath) {
         this.trainName = trainName;
@@ -26,6 +28,11 @@ public class Train {
         this.bogies = bogies;
         this.trainPath = trainPath;
         this.trainStatus = trainStatus;
+        //System.out.println(trainPath.getCurreStation());
+        
+        // for(Bogie bogie:bogies){
+        //     System.out.println(this.trainName+"-----"+bogie.getDestinationStationCode()+"---------------"+bogie.getDestinationDistance());
+        // }
     }
 
     public String getTrainName() {
@@ -70,6 +77,47 @@ public class Train {
     }
     public String getSecondTrain(){
         return secondTrain;
+    }
+
+    public void moveToNextStop(List<Station> path){
+        stationIndex++;
+        Station nextstation;
+        if(stationIndex < path.size() && stationIndex>=0 ){
+             nextstation= path.get(stationIndex);
+        }
+        else{
+            nextstation=null;
+        }
+        //System.out.println("Removed      "+trainPath.getCurreStation().getStationCode());
+            List<Bogie> newList= new ArrayList<>();
+            for(Bogie bogie:bogies){
+                if(bogie.getDestinationStationCode().equals(trainPath.getCurreStation().getStationCode())){
+                    //continue;
+                    //System.out.println("Removed      "+bogie.getDestinationStationCode());
+                }
+                else{
+                    newList.add(bogie);
+                }
+            }
+            bogies=newList;
+            trainPath.setCurreStation(nextstation);
+            
+       
+    }
+
+    public void moveUpToStation(String stationCode){
+        List<Station> path=trainPath.getPath();
+       // System.out.println(path.size());
+        
+        for(Station station:path){
+           // System.out.println(this.trainName+"-------"+station.getStationCode());
+            if(!station.getStationCode().equals(stationCode))
+            moveToNextStop(path);
+            else{
+                break;
+            }
+            
+        } 
     }
 
 

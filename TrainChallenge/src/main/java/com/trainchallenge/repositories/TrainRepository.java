@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.trainchallenge.entities.Bogie;
-import com.trainchallenge.entities.Station;
 import com.trainchallenge.entities.Train;
 import com.trainchallenge.entities.TrainPath;
 import com.trainchallenge.entities.TrainStatus;
@@ -17,11 +16,11 @@ public class TrainRepository implements ITrainRepository {
     private final Map<Integer,Train> trainIdMap;
 
     
-    TrainRepository(){
+    public TrainRepository(){
         trainIdMap=new HashMap<>();
         trainNameMap=new HashMap<>();
     }
-    TrainRepository(Map<String,Train> trainNameMap,Map<Integer,Train> trainIdMap,int counter){
+    public TrainRepository(Map<String,Train> trainNameMap,Map<Integer,Train> trainIdMap,int counter){
         this.trainNameMap=trainNameMap;
         this.trainIdMap=trainIdMap;
         TrainRepository.counter=counter;
@@ -50,9 +49,9 @@ public class TrainRepository implements ITrainRepository {
     }
 
     @Override
-    public void updateTrain(Integer id, Train train) {
-        trainIdMap.put(id, train);
-        trainNameMap.put(train.getTrainName(), train);
+    public void updateTrain(String trainName, Train train) {
+        trainIdMap.put(train.getId(), train);
+        trainNameMap.put(trainName, train);
 
     }
     

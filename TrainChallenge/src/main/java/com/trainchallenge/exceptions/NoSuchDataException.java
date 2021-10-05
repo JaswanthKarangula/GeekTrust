@@ -1,7 +1,8 @@
 package com.trainchallenge.exceptions;
 
 
-public class NoSuchCommandException extends Exception{
+
+public class NoSuchDataException extends Exception {
     /**
      *
      */
@@ -9,6 +10,6 @@ public class NoSuchCommandException extends Exception{
 
     @Override
     public String toString() {
-        return "No such Command Found!";
+        return "No such Data Found!";
     }
 }

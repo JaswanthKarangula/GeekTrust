@@ -12,5 +12,5 @@ public interface ITrainRepository {
     Train getTrainByName(String trainName);
     Train getTrainById(Integer id);
     Train saveTrain(String trainName,List<Bogie> bogies,TrainStatus trainStatus,TrainPath trainPath);
-	void updateTrain(Integer id, Train firstTrain);
+	void updateTrain(String trainName, Train firstTrain);
 }

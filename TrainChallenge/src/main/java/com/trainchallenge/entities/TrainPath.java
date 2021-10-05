@@ -16,7 +16,12 @@ public class TrainPath {
 
     public TrainPath(List<Station> path) {
         this.path=path;
+        curreStation=path.get(0);
+        createDistanceMap(path);
         addPathToMap(path);
+        // for(Station station:path){
+        //     System.out.println(station.getStationCode()+"------------"+station.getStationDistanc());
+        // }
     }
     
     public TrainPath(Station curreStation, List<Station> path, Map<String,Station> pathMap) {
@@ -26,6 +31,13 @@ public class TrainPath {
         addPathToMap(path);
     }
 
+    private void createDistanceMap(List<Station> path){
+        distanceMap= new HashMap<>();
+        for(Station station:path){
+            distanceMap.put(station.getStationCode(), station.getStationDistanc());
+        }
+         
+    }
     void addPathToMap(List<Station> path){
         pathMap= new HashMap<>();
         for(Station station:path){
@@ -34,7 +46,7 @@ public class TrainPath {
     }
 
     public Double getDistance(String stationCode){
-        //TODO
+        
         return distanceMap.get(stationCode);
     }
 
